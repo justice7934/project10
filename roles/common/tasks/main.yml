@@ -1,0 +1,6 @@
+---
+# roles/common/tasks/main.yml
+
+- name: Configure DNS for redis servers
+  import_tasks: dns.yml
+  when: "'redis' in group_names"
