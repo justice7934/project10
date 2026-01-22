@@ -31,11 +31,14 @@
 # Install ffmpeg (Static Binary 방식 ⭐ 핵심)
 # ============================================
 
-- name: Download ffmpeg static binary
-  ansible.builtin.get_url:
-    url: https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
-    dest: /tmp/ffmpeg.tar.xz
-    mode: "0644"
+- name: Download ffmpeg static binary (via curl)
+  ansible.builtin.shell: |
+    curl -L --fail --connect-timeout 10 --max-time 300 \
+      -o /tmp/ffmpeg.tar.xz \
+      https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
+  args:
+    creates: /tmp/ffmpeg.tar.xz
+
 
 - name: Extract ffmpeg archive
   ansible.builtin.unarchive:
