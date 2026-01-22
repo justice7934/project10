@@ -1,0 +1,376 @@
+/* ===============================
+   공통 기본 스타일
+================================ */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: white;
+    color: black;
+}
+
+/* ===============================
+   index.html (로그인 화면)
+================================ */
+.center-box {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-box h1 {
+    font-size: 80px;
+    margin-bottom: 10px;
+}
+
+.center-box p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.login-btn {
+    padding: 14px 36px;
+    background: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #333;
+}
+
+/* ===============================
+   main.html 전체 중앙 정렬
+================================ */
+.page-center {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===============================
+   안내 문구
+================================ */
+.guide-text {
+    font-size: 22px;
+    color: #000000;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* ===============================
+   입력 박스
+================================ */
+.input-box {
+    width: 100%;
+    max-width: 720px;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===============================
+   textarea
+================================ */
+.input-box textarea {
+    width: 100%;
+    min-height: 20px;
+    max-height: 200px;
+    border: none;
+    resize: none;
+    outline: none;
+
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: Arial, sans-serif;
+
+    overflow-y: hidden;
+    background: transparent;
+}
+
+.input-box textarea::placeholder {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #999;
+}
+
+/* ===============================
+   ▶ 아이콘 버튼
+================================ */
+.input-box button {
+    margin-top: 12px;
+    align-self: flex-end;
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: black;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}
+
+.input-box button span {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    transform: translate(1px, -1px);
+}
+
+.input-box button:hover {
+    background: #333;
+}
+
+/* ===============================
+   우측 상단 메뉴 버튼
+================================ */
+.top-menu {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    z-index: 100;
+}
+
+.menu-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.menu-btn span {
+    width: 18px;
+    height: 2px;
+    background: white;
+    display: block;
+    position: relative;
+}
+
+.menu-btn span::before,
+.menu-btn span::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    background: white;
+    left: 0;
+}
+
+.menu-btn span::before {
+    top: -6px;
+}
+
+.menu-btn span::after {
+    top: 6px;
+}
+
+/* ===============================
+   드롭다운 메뉴
+================================ */
+.menu-dropdown {
+    position: absolute;
+    top: 54px;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    width: 160px;
+    display: none;
+}
+
+.menu-dropdown a {
+    display: block;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+
+.menu-dropdown a:hover {
+    background: #f5f5f5;
+}
+
+.menu-dropdown.show {
+    display: block;
+}
+
+/* ===============================
+   라이브러리 컨테이너
+================================ */
+.library-container {
+    padding: 100px 40px;
+}
+
+.library-title {
+    margin-bottom: 24px;
+    font-size: 24px;
+}
+
+/* ================= ===============================
+   쇼츠형 영상 라이브러리
+================================ */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 24px;
+}
+
+.video-card {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    border-radius: 16px;
+    background: #111;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* ===============================
+   영상 요소
+================================ */
+.short-video {
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.short-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: black;
+}
+
+/* ===============================
+   🔥 YouTube 제목 입력 모달
+================================ */
+.title-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.title-box {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    width: 320px;
+}
+
+/* 제목 중앙 정렬 */
+.title-box h3 {
+    margin-top: 0;
+    font-size: 16px;
+    text-align: center;
+}
+
+.title-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 12px 0;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.title-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+/* ===============================
+   버튼 기본 스타일 (공통)
+================================ */
+.title-actions button {
+    padding: 8px 16px;
+    cursor: pointer;
+
+    background: white;
+    color: black;
+
+    /* ✅ 테두리 진하게 */
+    border: 1px solid #333;
+    border-radius: 6px;
+
+    font-size: 13px;
+    transition: all 0.25s ease;
+}
+
+/* ===============================
+   취소 버튼 (회색 활성화)
+================================ */
+#cancelBtn:hover,
+#cancelBtn:active {
+    background: #9e9e9e;   /* 회색 배경 */
+    color: white;          /* 흰 글씨 */
+    border-color: #9e9e9e;
+}
+
+/* ===============================
+   업로드 버튼 (빨간 활성화)
+================================ */
+#confirmBtn:hover,
+#confirmBtn:active {
+    background: #e60023;   /* 빨간 배경 */
+    color: white;
+    border-color: #e60023;
+}
+
+/* ===============================
+   📭 라이브러리 Empty State (화면 정중앙)
+================================ */
+.empty-library {
+    position: fixed;          /* 🔥 핵심 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.empty-main {
+    font-size: 40px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 12px;
+}
+
+.empty-sub {
+    font-size: 18px;
+    color: #888;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.empty-sub:hover {
+    color: #555;
+}
