@@ -3,12 +3,6 @@
   roles:
     - common
 
-# 3. Redis (상태 저장소)
-- hosts: redis
-  become: yes
-  roles:
-    - redis
-
 # 4. WAS (FastAPI)
 - hosts: was
   become: yes
@@ -20,3 +14,9 @@
   become: yes
   roles:
     - nginx
+
+# 3. Redis (상태 저장소)
+- hosts: redis
+  become: yes
+  roles:
+    - redis
