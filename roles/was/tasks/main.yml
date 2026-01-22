@@ -12,63 +12,35 @@
 
 
 # ============================================
-# Install base system packages (❌ ffmpeg 제외)
+# Install RPM Fusion (🔥 ffmpeg 공식 경로)
 # ============================================
 
-- name: Install system packages (Python, Redis client, PostgreSQL client)
+- name: Enable RPM Fusion repository
+  ansible.builtin.dnf:
+    name:
+      - https://download1.rpmfusion.org/free/el/rpmfusion-free-release-9.noarch.rpm
+    state: present
+    disable_gpg_check: yes
+
+
+# ============================================
+# Install base system packages (+ ffmpeg)
+# ============================================
+
+- name: Install system packages (Python, ffmpeg, Redis client, PostgreSQL client)
   ansible.builtin.dnf:
     name:
       - python3
       - python3-pip
       - redis
       - postgresql
-      - tar
-      - xz
+      - ffmpeg        # ✅ 여기서 끝
     state: present
 
 
 # ============================================
-# Install ffmpeg (Static Binary 방식 ⭐ 안정화 버전)
+# Verify ffmpeg installation
 # ============================================
-
-- name: Download ffmpeg static binary (robust, no hang)
-  ansible.builtin.shell: |
-    set -e
-    timeout 300 curl -L \
-      --retry 5 \
-      --retry-delay 5 \
-      --fail \
-      --silent \
-      --show-error \
-      -o /tmp/ffmpeg.tar.xz \
-      https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
-  args:
-    creates: /tmp/ffmpeg.tar.xz
-
-- name: Verify ffmpeg archive exists
-  ansible.builtin.stat:
-    path: /tmp/ffmpeg.tar.xz
-  register: ffmpeg_archive
-
-- name: Fail if ffmpeg download failed
-  ansible.builtin.fail:
-    msg: "ffmpeg download failed or timed out"
-  when: not ffmpeg_archive.stat.exists
-
-- name: Extract ffmpeg archive
-  ansible.builtin.unarchive:
-    src: /tmp/ffmpeg.tar.xz
-    dest: /opt
-    remote_src: yes
-
-- name: Install ffmpeg binary
-  ansible.builtin.shell: |
-    set -e
-    FFMPEG_DIR=$(find /opt -maxdepth 1 -type d -name "ffmpeg-*-static" | head -n 1)
-    cp "$FFMPEG_DIR/ffmpeg" /usr/local/bin/ffmpeg
-    chmod +x /usr/local/bin/ffmpeg
-  args:
-    creates: /usr/local/bin/ffmpeg
 
 - name: Verify ffmpeg installation
   ansible.builtin.command: ffmpeg -version
