@@ -71,7 +71,7 @@
     creates: /usr/local/bin/ffmpeg
 
 - name: Verify ffmpeg installation
-  ansible.builtin.command: ffmpeg -version
+  ansible.builtin.command: /usr/local/bin/ffmpeg -version
   changed_when: false
 
 
